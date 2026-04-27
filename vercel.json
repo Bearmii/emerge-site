@@ -2,6 +2,14 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/normal.html",         "destination": "/",                   "permanent": true },
+    { "source": "/full-ai.html",        "destination": "/ai",                 "permanent": true },
+    { "source": "/stabilization.html",  "destination": "/support.html",       "permanent": true },
+    { "source": "/optimization.html",   "destination": "/customization.html", "permanent": true },
+    { "source": "/rescue.html",         "destination": "/implementation.html","permanent": true },
+    { "source": "/technical-debt.html", "destination": "/customization.html", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/", "destination": "/index.html" }
   ],

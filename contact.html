@@ -22,11 +22,10 @@
       <a class="brand" href="/">eMerge<span class="dot">.</span></a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">☰</button>
       <ul id="primary-nav">
-        <li><a href="/normal.html">Home</a></li>
-        <li><a href="/stabilization.html">Stabilization</a></li>
-        <li><a href="/optimization.html">Optimization</a></li>
-        <li><a href="/rescue.html">Rescue</a></li>
-        <li><a href="/technical-debt.html">Technical Debt</a></li>
+        <li><a href="/connectors.html">Connectors</a></li>
+        <li><a href="/implementation.html">Implementation</a></li>
+        <li><a href="/support.html">Support</a></li>
+        <li><a href="/customization.html">Customization</a></li>
         <li><a href="/contact.html" class="cta">Talk to us</a></li>
       </ul>
     </div>
@@ -51,14 +50,14 @@
     </form>
 
     <p style="margin-top: 1.5rem; color: var(--ink-soft); font-size: 0.9rem;">
-      Prefer to talk to an AI consultant first? Try the <a href="/full-ai.html">Full AI Experience</a> — it can summarize what we do and even fill out this form for you.
+      Prefer to talk to an AI consultant first? Try the <a href="/ai">Full AI Experience</a> — it can find the right connector, summarize a service, and even fill out this form for you.
     </p>
   </article>
 
   <footer class="footer">
     <div class="footer-inner">
       <div>&copy; 2026 eMerge Solutions</div>
-      <div><a href="/normal.html">Home</a></div>
+      <div><a href="/">Home</a></div>
     </div>
   </footer>
 
@@ -67,6 +66,7 @@
     const tg = document.querySelector('.nav-toggle');
     const ul = document.getElementById('primary-nav');
     tg?.addEventListener('click', () => { const open = ul.classList.toggle('open'); tg.setAttribute('aria-expanded', String(open)); });
+    window.eMergeAI?.mountModeToggle();
 
     const form = document.getElementById('contact-form');
     const status = document.getElementById('form-status');

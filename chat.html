@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Browse eMerge Solutions with a persistent NetSuite-savvy chat assistant ready to answer your questions." />
+  <meta name="description" content="Browse eMerge Solutions with a persistent NetSuite-savvy chat assistant ready to answer your questions about connectors, implementation, support, or customization." />
   <link rel="stylesheet" href="/assets/style.css" />
   <link rel="canonical" href="https://emerge-solutions.example/chat.html" />
   <title>Chat Experience | eMerge Solutions</title>
@@ -14,11 +14,10 @@
       <a class="brand" href="/">eMerge<span class="dot">.</span></a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">☰</button>
       <ul id="primary-nav">
-        <li><a href="/normal.html">Home</a></li>
-        <li><a href="/stabilization.html">Stabilization</a></li>
-        <li><a href="/optimization.html">Optimization</a></li>
-        <li><a href="/rescue.html">Rescue</a></li>
-        <li><a href="/technical-debt.html">Technical Debt</a></li>
+        <li><a href="/connectors.html">Connectors</a></li>
+        <li><a href="/implementation.html">Implementation</a></li>
+        <li><a href="/support.html">Support</a></li>
+        <li><a href="/customization.html">Customization</a></li>
         <li><a href="/contact.html" class="cta">Talk to us</a></li>
       </ul>
     </div>
@@ -28,10 +27,10 @@
     <div class="hero-inner">
       <span class="eyebrow">Chat experience</span>
       <h1>Browse normally, ask anything.</h1>
-      <p class="lede">A NetSuite-savvy assistant lives in the bottom-right of every page from here on. Ask about SuiteScript, ODBC, performance, or just "where do I start?".</p>
+      <p class="lede">A NetSuite-savvy assistant lives in the bottom-right of every page from here on. Ask about connectors ("do you have Salesforce?"), implementation timelines, or just "where do I start?".</p>
       <div class="cta-row">
-        <a href="/normal.html" class="btn btn-light">Start browsing →</a>
-        <a href="/full-ai.html" class="btn btn-ghost">Try Full AI instead</a>
+        <a href="/" class="btn btn-light">Start browsing →</a>
+        <a href="/ai" class="btn btn-glow">Try Full AI instead</a>
       </div>
     </div>
   </header>
@@ -41,20 +40,20 @@
       <h2>What the assistant can do</h2>
       <div class="grid">
         <div class="card">
-          <h3>Answer NetSuite questions</h3>
-          <p>SuiteScript 2.1, SuiteFlow, saved searches, ODBC / SuiteAnalytics Connect — explain or compare on the fly.</p>
+          <h3>Find a connector</h3>
+          <p>"Do you have a connector for Shopify?" — answers from the live library and links straight to the connector page.</p>
         </div>
         <div class="card">
           <h3>Navigate the site</h3>
-          <p>"Take me to rescue" or "open the contact form" — the assistant moves you there.</p>
+          <p>"Take me to support" or "open contact" — the assistant moves you there.</p>
         </div>
         <div class="card">
           <h3>Fill out the form</h3>
-          <p>Say "my name is Jane, email jane@acme.com, message my saved searches are timing out" and it'll pre-fill contact for you.</p>
+          <p>"My name is Jane, email jane@acme.com, we need Stripe ↔ NetSuite" — it pre-fills the contact form.</p>
         </div>
         <div class="card">
           <h3>Voice in &amp; out</h3>
-          <p>Tap the 🎤 to talk; tap 🔊 to have replies read aloud. Browser-native — no install.</p>
+          <p>Tap 🎤 to talk; tap 🔊 to have replies read aloud. Browser-native — no install.</p>
         </div>
       </div>
     </section>
@@ -73,13 +72,18 @@
     const ul = document.getElementById('primary-nav');
     tg?.addEventListener('click', () => { const open = ul.classList.toggle('open'); tg.setAttribute('aria-expanded', String(open)); });
 
-    // Enable persistent chat mode and mount the launcher
     window.eMergeAI.enableChatMode();
     window.eMergeAI.createWidget({
       mode: 'launcher',
       title: 'Ask eMerge',
-      modePill: 'NetSuite AI'
+      modePill: 'NetSuite AI',
+      suggestions: [
+        { label: 'Salesforce ↔ NetSuite', text: 'Do you have a Salesforce connector for NetSuite?' },
+        { label: 'Implementation timeline', text: 'How long does a NetSuite implementation take?' },
+        { label: 'Book a call', text: 'I want to book a call.' }
+      ]
     });
+    window.eMergeAI.mountModeToggle();
   </script>
 </body>
 </html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Managed NetSuite support — SLA-backed admin, scripting, release coverage, and connector monitoring. Tiered plans from on-demand to embedded." />
+  <link rel="stylesheet" href="/assets/style.css" />
+  <link rel="canonical" href="https://emerge-solutions.example/support.html" />
+  <title>NetSuite Managed Support | eMerge Solutions</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "NetSuite Managed Support",
+    "provider": { "@type": "Organization", "name": "eMerge Solutions" },
+    "areaServed": "Worldwide",
+    "description": "SLA-backed NetSuite managed support including admin, scripting, release coverage, audits and connector monitoring."
+  }
+  </script>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="/">eMerge<span class="dot">.</span></a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">☰</button>
+      <ul id="primary-nav">
+        <li><a href="/connectors.html">Connectors</a></li>
+        <li><a href="/implementation.html">Implementation</a></li>
+        <li><a href="/support.html">Support</a></li>
+        <li><a href="/customization.html">Customization</a></li>
+        <li><a href="/contact.html" class="cta">Talk to us</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <article class="article">
+    <p class="kicker">Service · Support</p>
+    <h1>Managed NetSuite support, with SLAs.</h1>
+    <p>Most NetSuite admins are over-tasked. Either they hand off real work to a black-box partner who takes weeks, or they patch problems at midnight. We're the option in between: a named bench of NetSuite consultants on retainer, with response SLAs you can actually plan around.</p>
+
+    <h2>What's covered</h2>
+    <ul>
+      <li><strong>Admin tasks</strong> — users, roles, permissions, saved searches, custom records, page layouts.</li>
+      <li><strong>Scripting changes</strong> — SuiteScript 2.1 and SuiteFlow modifications, bug fixes, performance tuning.</li>
+      <li><strong>Release coverage</strong> — every NetSuite release tested in your sandbox before it hits production. Breaking changes flagged and fixed.</li>
+      <li><strong>Connector monitoring</strong> — if you use our <a href="/connectors.html">connector library</a>, we watch the queues and fix issues before your team notices.</li>
+      <li><strong>Health checks &amp; audits</strong> — quarterly review of script governance, saved-search performance, role drift.</li>
+      <li><strong>Stabilization sprints</strong> — when something is bleeding, we mobilize within hours, not days.</li>
+    </ul>
+
+    <h2>Tiers</h2>
+    <ul>
+      <li><strong>On-demand</strong> — pre-paid block of hours. P2 response in 1 business day. Good for mature teams who need occasional backup.</li>
+      <li><strong>Standard</strong> — monthly retainer. Named team. P1 response in 2 hours, P2 in 4 hours. Quarterly health check included.</li>
+      <li><strong>Embedded</strong> — dedicated consultant(s) effectively part of your team. Daily standup, joint backlog, you set priorities.</li>
+    </ul>
+
+    <div class="callout">
+      <strong>Why named consultants?</strong> NetSuite is too configurable for ticket-roulette. The same person who fixed your billing flow last quarter should be the one who answers when it breaks again.
+    </div>
+
+    <h2>Best fit</h2>
+    <ul>
+      <li>NetSuite customers post-go-live who don't want to staff a full internal admin team</li>
+      <li>Teams that have been burned by big-partner support response times</li>
+      <li>Companies with one stretched-thin admin who needs a senior backstop</li>
+    </ul>
+
+    <h2>Talk to us</h2>
+    <p>We'll send a sample SLA, a tier comparison, and references in your industry. <a href="/contact.html">Tell us your support situation →</a></p>
+  </article>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>&copy; 2026 eMerge Solutions</div>
+      <div><a href="/contact.html">Contact</a></div>
+    </div>
+  </footer>
+
+  <script src="/assets/ai-engine.js"></script>
+  <script>
+    const tg = document.querySelector('.nav-toggle');
+    const ul = document.getElementById('primary-nav');
+    tg?.addEventListener('click', () => { const open = ul.classList.toggle('open'); tg.setAttribute('aria-expanded', String(open)); });
+    window.eMergeAI?.mountModeToggle();
+  </script>
+</body>
+</html>

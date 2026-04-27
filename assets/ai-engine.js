@@ -2,7 +2,7 @@
  * eMerge AI Engine
  *
  * Powers both the persistent chat widget (chat.html, all pages in chat mode)
- * and the full AI experience (full-ai.html). Supports:
+ * and the immersive full AI experience (/ai). Supports:
  *   - Text input
  *   - Voice input (Web Speech API SpeechRecognition)
  *   - Voice output (speechSynthesis)
@@ -12,37 +12,46 @@
 
 (function () {
   const PAGES = {
-    home: '/normal.html',
-    services: '/normal.html#services',
-    stabilization: '/stabilization.html',
-    optimization: '/optimization.html',
-    rescue: '/rescue.html',
-    'technical-debt': '/technical-debt.html',
-    technical_debt: '/technical-debt.html',
+    home: '/',
+    services: '/#services',
+    connectors: '/connectors.html',
+    implementation: '/implementation.html',
+    support: '/support.html',
+    customization: '/customization.html',
+    // legacy pillar names (kept so AI/links from older content still resolve)
+    stabilization: '/support.html',
+    optimization: '/customization.html',
+    rescue: '/implementation.html',
+    'technical-debt': '/customization.html',
+    technical_debt: '/customization.html',
     contact: '/contact.html',
     chat: '/chat.html',
-    'full-ai': '/full-ai.html',
-    ai: '/full-ai.html',
-    index: '/index.html',
+    'full-ai': '/ai',
+    ai: '/ai',
+    index: '/',
   };
 
   const KNOWLEDGE = {
     company:
-      "eMerge Solutions is an independent NetSuite consultancy. We don't sell licenses, so our advice is unbiased — we focus exclusively on making your existing NetSuite work.",
+      "eMerge Solutions is a NetSuite specialist firm with a library of 80+ pre-built connectors plus implementation, support and customization services. We turn 6-week integrations into 6-day connector deployments.",
     pillars: {
-      stabilization:
-        'Stabilization stops the bleeding. We diagnose and fix performance issues, broken SuiteScript, failing integrations, and saved-search errors so NetSuite returns to a reliable baseline.',
-      optimization:
-        'Optimization unlocks ROI. We tune SuiteScript 2.1, refactor SuiteFlow workflows, automate manual tasks, and harden ODBC/SuiteAnalytics Connect integrations for speed and accuracy.',
-      rescue:
-        'Rescue is for failing implementations. When milestones are slipping and confidence is gone, we parachute in, cut scope, and ship a working NetSuite system fast.',
-      'technical-debt':
-        'Technical debt remediation refactors brittle bundles and customizations, retires legacy SuiteScript 1.0, and consolidates workflows so future changes are cheap.',
+      connectors:
+        'Our connector library covers 80+ pre-built NetSuite integrations: CRM (Salesforce, HubSpot), eCommerce (Shopify, BigCommerce), payments (Stripe), tax (Avalara), logistics (ShipStation), EDI, banking, and BI. Each is monitored, maintained, and deployed in days.',
+      implementation:
+        'NetSuite implementation: fixed-scope phase one go-lives. Discovery, configuration, data migration, training, hyper-care. Also for new module rollouts and stalled implementations.',
+      support:
+        'Managed NetSuite support with SLAs. Tiers from on-demand to embedded. Named consultants, release coverage, connector monitoring, quarterly health checks.',
+      customization:
+        'SuiteScript 2.1, SuiteFlow, custom records and workbooks, custom UIs. Source-controlled with SDF. Built so the admin reading the code in two years can still maintain it.',
     },
+    connectors: [
+      'Salesforce', 'HubSpot', 'Shopify', 'BigCommerce', 'Stripe', 'Avalara',
+      'ShipStation', 'EDI (X12, EDIFACT)', 'Banking & Plaid', 'Snowflake'
+    ],
     differentiators: [
-      "We don't sell licenses, so we recommend less, not more.",
-      'We are NetSuite specialists — every consultant is hands-on with SuiteScript and SuiteAnalytics.',
-      'Empathy first: a struggling NetSuite system is almost always a configuration issue, not a personal or product failure.',
+      'A connector library, not bespoke integrations — time-to-value in days, not months.',
+      'NetSuite specialists end-to-end. Hands-on with SuiteScript, SuiteFlow, and SuiteAnalytics.',
+      'Empathy first: when NetSuite is failing, it is almost always a configuration issue, not a personal failure.',
     ],
   };
 
@@ -137,18 +146,27 @@
       return {
         reply:
           KNOWLEDGE.company +
-          ' Our four NetSuite service pillars are Stabilization, Optimization, Rescue, and Technical Debt remediation.',
+          ' We offer Connectors, Implementation, Support, and Customization.',
         actions: [],
       };
     }
-    if (/stabili[sz]/.test(t)) return { reply: KNOWLEDGE.pillars.stabilization, actions: [{ type: 'suggest', target: 'stabilization' }] };
-    if (/optim[iz]/.test(t)) return { reply: KNOWLEDGE.pillars.optimization, actions: [{ type: 'suggest', target: 'optimization' }] };
-    if (/rescue|failing|deadline/.test(t)) return { reply: KNOWLEDGE.pillars.rescue, actions: [{ type: 'suggest', target: 'rescue' }] };
-    if (/(technical )?debt|legacy|refactor/.test(t)) return { reply: KNOWLEDGE.pillars['technical-debt'], actions: [{ type: 'suggest', target: 'technical-debt' }] };
-    if (/suitescript|suite ?flow|saved search|odbc|suiteanalytics/.test(t)) {
+    // Connector lookup
+    const connMatch = KNOWLEDGE.connectors.find((c) => t.includes(c.toLowerCase().split(' ')[0]));
+    if (connMatch || /connect|integrat|sync/.test(t)) {
+      return {
+        reply: connMatch
+          ? `Yes — ${connMatch} is one of our pre-built NetSuite connectors. We can deploy it in days. Want to see the connector library?`
+          : KNOWLEDGE.pillars.connectors + ' Want to browse the library?',
+        actions: [{ type: 'navigate', target: 'connectors' }],
+      };
+    }
+    if (/implement|go.?live|new netsuite|module/.test(t)) return { reply: KNOWLEDGE.pillars.implementation, actions: [{ type: 'navigate', target: 'implementation' }] };
+    if (/support|managed|sla|admin/.test(t)) return { reply: KNOWLEDGE.pillars.support, actions: [{ type: 'navigate', target: 'support' }] };
+    if (/custom|suitescript|suite ?flow|workflow|workbook/.test(t)) return { reply: KNOWLEDGE.pillars.customization, actions: [{ type: 'navigate', target: 'customization' }] };
+    if (/saved search|odbc|suiteanalytics/.test(t)) {
       return {
         reply:
-          'NetSuite specifics like SuiteScript 2.1, SuiteFlow, saved searches, and SuiteAnalytics Connect (ODBC) are exactly the kind of thing we work on day-to-day. Want to talk to a consultant?',
+          'NetSuite specifics like saved searches, SuiteAnalytics workbooks, and ODBC / SuiteAnalytics Connect are core to our customization and connector work. Want to talk to a consultant?',
         actions: [{ type: 'suggest', target: 'contact' }],
       };
     }
@@ -452,6 +470,80 @@
     return { box, handle };
   }
 
+  // ---------- Persistent mode-toggle bubble ----------
+  // Shown on every non-AI page. Lets users cycle Normal ↔ Chat ↔ AI.
+  function currentMode() {
+    if (location.pathname === '/ai' || location.pathname.endsWith('/ai.html')) return 'ai';
+    if (sessionStorage.getItem('emerge_chat_mode') === '1') return 'chat';
+    return 'normal';
+  }
+  function mountModeToggle() {
+    if (location.pathname === '/ai' || location.pathname.endsWith('/ai.html')) return; // /ai has its own back affordance
+    if (document.querySelector('.mode-toggle')) return; // already mounted
+    const mode = currentMode();
+
+    const bubble = document.createElement('button');
+    bubble.className = 'mode-toggle';
+    bubble.type = 'button';
+    bubble.setAttribute('aria-haspopup', 'menu');
+    bubble.setAttribute('aria-expanded', 'false');
+    bubble.innerHTML = `<span class="spark"></span> <span class="label">${labelFor(mode)}</span>`;
+
+    const menu = document.createElement('div');
+    menu.className = 'mode-menu';
+    menu.setAttribute('role', 'menu');
+    menu.innerHTML = `
+      <button type="button" data-mode="normal" role="menuitem" aria-current="${mode === 'normal'}">
+        📄 Classic site ${mode === 'normal' ? '<span class="pill-active">current</span>' : ''}
+      </button>
+      <button type="button" data-mode="chat" role="menuitem" aria-current="${mode === 'chat'}">
+        💬 Chat alongside ${mode === 'chat' ? '<span class="pill-active">current</span>' : ''}
+      </button>
+      <button type="button" data-mode="ai" role="menuitem" aria-current="${mode === 'ai'}">
+        ✦ Full AI experience
+      </button>
+      <div class="menu-hint">Switch any time. Your place on the page is kept.</div>
+    `;
+
+    document.body.appendChild(bubble);
+    document.body.appendChild(menu);
+
+    bubble.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      bubble.setAttribute('aria-expanded', String(open));
+    });
+    document.addEventListener('click', (e) => {
+      if (!menu.contains(e.target) && !bubble.contains(e.target)) {
+        menu.classList.remove('open');
+        bubble.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    menu.querySelectorAll('button[data-mode]').forEach((b) => {
+      b.addEventListener('click', () => {
+        const target = b.dataset.mode;
+        const onChatLanding = location.pathname.endsWith('/chat.html');
+        if (target === 'normal') {
+          disableChatMode();
+          // Leave the chat-landing page so it doesn't re-enable chat mode on load
+          if (onChatLanding) location.href = '/';
+          else location.reload();
+        } else if (target === 'chat') {
+          enableChatMode();
+          if (onChatLanding) location.href = '/'; // already in chat mode; show it on home
+          else location.reload();
+        } else if (target === 'ai') {
+          location.href = '/ai';
+        }
+      });
+    });
+  }
+  function labelFor(mode) {
+    if (mode === 'chat') return 'Chat mode · switch';
+    if (mode === 'ai') return 'AI mode · switch';
+    return '✦ Try AI mode';
+  }
+
   // ---------- Auto-mount persistent chat across pages ----------
   // chat.html (or any page) can call eMergeAI.enableChatMode() to set a session
   // flag; subsequent page loads with ai-engine.js will auto-spawn the launcher.
@@ -467,7 +559,7 @@
   function autoMount() {
     if (!isChatMode()) return;
     // Don't auto-mount on the full-ai page (it has its own embedded widget)
-    if (location.pathname.endsWith('/full-ai.html')) return;
+    if (location.pathname === '/ai' || location.pathname.endsWith('/ai.html')) return;
     // Don't double-mount
     if (document.querySelector('.chat-launcher') || document.querySelector('.chat-widget')) return;
     createWidget({ mode: 'launcher', title: 'Ask eMerge', modePill: 'NetSuite AI' });
@@ -483,5 +575,7 @@
     enableChatMode,
     disableChatMode,
     isChatMode,
+    mountModeToggle,
+    currentMode,
   };
 })();
