@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Browse our site with a persistent chat assistant ready to answer your questions about Acumatica and NetSuite." />
+  <title>Chat Experience | eMerge Solutions</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav>
+    <div><strong>eMerge Solutions</strong></div>
+    <ul>
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/stabilization.html">Stabilization</a></li>
+      <li><a href="/optimization.html">Optimization</a></li>
+      <li><a href="/rescue.html">Rescue</a></li>
+      <li><a href="/technical-debt.html">Technical Debt</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <main>
+    <h2>Chat Experience</h2>
+    <p>
+      Browse our content while using the persistent chat assistant located at the bottom right of your screen. Feel free to ask about SuiteScript, ODBC integrations, performance tuning and more.
+    </p>
+  </main>
+  <footer>
+    <p>&copy; 2026 eMerge Solutions. All rights reserved.</p>
+  </footer>
+  <button class="chat-toggle" id="chat-toggle">💬</button>
+  <div class="chat-container" id="chat-box">
+    <div class="chat-header">
+      <span>Ask eMerge</span>
+      <button id="close-chat" style="background:none;border:none;color:#fff;font-weight:bold;cursor:pointer;">×</button>
+    </div>
+    <div class="chat-messages" id="chat-messages"></div>
+    <div class="chat-input">
+      <input type="text" id="chat-input" placeholder="Ask a question…" />
+      <button id="chat-send">Send</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+  <script>
+    // Toggle chat visibility
+    const chatToggle = document.getElementById('chat-toggle');
+    const chatBox = document.getElementById('chat-box');
+    const closeChat = document.getElementById('close-chat');
+    chatToggle.addEventListener('click', () => {
+      chatBox.style.display = chatBox.style.display === 'flex' ? 'none' : 'flex';
+    });
+    closeChat.addEventListener('click', () => {
+      chatBox.style.display = 'none';
+    });
+    // Basic chat functionality
+    const chatMessages = document.getElementById('chat-messages');
+    const chatInput = document.getElementById('chat-input');
+    const chatSend = document.getElementById('chat-send');
+    chatSend.addEventListener('click', () => {
+      const value = chatInput.value.trim();
+      if (!value) return;
+      appendChat(value, 'user');
+      chatInput.value = '';
+      // Simulated bot reply - in real deployment call API
+      setTimeout(() => {
+        // Use simple pattern matching for demonstration
+        let reply = 'I’m sorry, I didn’t quite catch that. Can you rephrase?';
+        if (/suite(script|script2\.1)/i.test(value)) reply = 'SuiteScript 2.1 is the latest JavaScript API for NetSuite; it enables asynchronous promises and modular design.';
+        else if (/odbc/i.test(value)) reply = 'ODBC allows external reporting tools to query your NetSuite data. We can help configure and secure your ODBC connection.';
+        else if (/stabilize|stabilization/i.test(value)) reply = 'Our stabilization services diagnose system issues and restore a healthy baseline.';
+        appendChat(reply, 'bot');
+      }, 500);
+    });
+    function appendChat(text, sender) {
+      const msg = document.createElement('div');
+      msg.textContent = text;
+      msg.style.margin = '0.5rem 0';
+      msg.style.padding = '0.5rem';
+      msg.style.borderRadius = '6px';
+      msg.style.maxWidth = '80%';
+      if (sender === 'bot') {
+        msg.style.background = '#f0f4ff';
+        msg.style.alignSelf = 'flex-start';
+      } else {
+        msg.style.background = '#e6fffa';
+        msg.style.alignSelf = 'flex-end';
+      }
+      chatMessages.appendChild(msg);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+  </script>
+</body>
+</html>

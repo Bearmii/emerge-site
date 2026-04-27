@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI‑guided ERP consulting experience. Our assistant asks questions, understands your business problem and recommends the right service." />
+  <title>Full AI Experience | eMerge Solutions</title>
+  <link rel="stylesheet" href="style.css" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "AI Consulting Assistant",
+      "provider": {
+        "@type": "Organization",
+        "name": "eMerge Solutions"
+      },
+      "areaServed": "Worldwide",
+      "description": "An AI‑driven consultant that asks questions about your ERP and recommends the right resources."
+    }
+  </script>
+</head>
+<body>
+  <nav>
+    <div><strong>eMerge Solutions</strong></div>
+    <ul>
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/stabilization.html">Stabilization</a></li>
+      <li><a href="/optimization.html">Optimization</a></li>
+      <li><a href="/rescue.html">Rescue</a></li>
+      <li><a href="/technical-debt.html">Technical Debt</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <main>
+    <h2>Full AI Site Experience</h2>
+    <p>
+      Our AI consultant will ask a few questions to understand your ERP landscape and recommend a path forward. Your responses help us tailor the advice. No personal data is stored without your consent.
+    </p>
+    <div id="ai-chat" class="chat-container" style="display:flex; position:static; height:500px; max-width:600px;">
+      <div class="chat-header">
+        <span>AI Consultant</span>
+      </div>
+      <div class="chat-messages" id="ai-messages"></div>
+      <div class="chat-input">
+        <input type="text" id="ai-input" placeholder="Type your answer..." />
+        <button id="ai-send">Send</button>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <p>&copy; 2026 eMerge Solutions. All rights reserved.</p>
+  </footer>
+  <script src="script.js"></script>
+  <script>
+    // Simple state machine for AI conversation
+    const questions = [
+      'Hello! What ERP system are you using (Acumatica, NetSuite, other)?',
+      'What is the biggest challenge you are facing right now?',
+      'Are you looking to stabilize, optimize, rescue, or tackle technical debt?',
+      'Thanks for sharing. Would you like to connect with a human consultant?'
+    ];
+    let currentQuestion = 0;
+    const messages = document.getElementById('ai-messages');
+    const input = document.getElementById('ai-input');
+    const sendBtn = document.getElementById('ai-send');
+
+    function addMessage(text, sender = 'bot') {
+      const msg = document.createElement('div');
+      msg.textContent = text;
+      msg.style.margin = '0.5rem 0';
+      msg.style.padding = '0.5rem';
+      msg.style.borderRadius = '6px';
+      msg.style.maxWidth = '80%';
+      if (sender === 'bot') {
+        msg.style.background = '#f0f4ff';
+        msg.style.alignSelf = 'flex-start';
+      } else {
+        msg.style.background = '#e6fffa';
+        msg.style.alignSelf = 'flex-end';
+      }
+      messages.appendChild(msg);
+      messages.scrollTop = messages.scrollHeight;
+    }
+    // Initial question
+    addMessage(questions[currentQuestion]);
+
+    sendBtn.addEventListener('click', () => {
+      const value = input.value.trim();
+      if (!value) return;
+      addMessage(value, 'user');
+      input.value = '';
+      // Basic check for destructive actions or sensitive intents
+      if (/delete|remove|send email|drop database|shutdown/i.test(value)) {
+        addMessage('This action seems sensitive. Are you sure you want to proceed? Reply yes to confirm or no to cancel.', 'bot');
+        return;
+      }
+      // Move to next question
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        setTimeout(() => addMessage(questions[currentQuestion]), 500);
+      } else {
+        // Provide recommendation based on user input (simplified)
+        setTimeout(() => {
+          addMessage('Thank you for your answers. Based on what you’ve shared, we recommend exploring our ' +
+            (value.toLowerCase().includes('stabilize') ? 'Stabilization' :
+             value.toLowerCase().includes('optimize') ? 'Optimization' :
+             value.toLowerCase().includes('rescue') ? 'Rescue' : 'Technical Debt') +
+            ' services. Would you like us to email you a detailed report?', 'bot');
+        }, 500);
+      }
+    });
+  </script>
+</body>
+</html>
