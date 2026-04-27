@@ -1,7 +1,19 @@
-.vercel
-.env
-.env.local
-.env.*.local
+# dependencies
 node_modules
+/.pnp
+.pnp.js
+
+# next
+.next/
+out/
+next-env.d.ts
+
+# vercel
+.vercel
+.env*.local
+.env
+
+# misc
 .DS_Store
 *.log
+*.tsbuildinfo

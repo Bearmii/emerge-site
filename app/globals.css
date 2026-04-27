@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+  html, body {
+    background: #06070A;
+    color: #F5F5F7;
+  }
+  ::selection {
+    background: rgba(123, 108, 246, 0.35);
+    color: #fff;
+  }
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "ss01", "ss02", "cv11";
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .text-pretty  { text-wrap: pretty; }
+
+  /* Subtle grid background for hero / sections */
+  .bg-dot-grid {
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.07) 1px, transparent 0);
+    background-size: 32px 32px;
+  }
+
+  /* Glass surface used by AI panel and floating cards */
+  .surface-glass {
+    background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    border: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  /* Used for thin separator lines */
+  .hr-soft {
+    border-image: linear-gradient(90deg, transparent, rgba(255,255,255,0.16), transparent) 1;
+  }
+
+  /* Aurora gradient text — for the AI signal accents */
+  .text-aurora {
+    background: linear-gradient(90deg, #C9C0FE 0%, #7B6CF6 35%, #5BCFFF 70%, #C9C0FE 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 8s linear infinite;
+  }
+}
+
+/* Reduced motion: kill animations everywhere */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
