@@ -1,0 +1,13 @@
+{
+  "name": "emerge-solutions-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Independent NetSuite consulting site with AI + chat experiences.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel deploy --prod"
+  }
+}

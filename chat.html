@@ -3,91 +3,83 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Browse our site with a persistent chat assistant ready to answer your questions about Acumatica and NetSuite." />
+  <meta name="description" content="Browse eMerge Solutions with a persistent NetSuite-savvy chat assistant ready to answer your questions." />
+  <link rel="stylesheet" href="/assets/style.css" />
+  <link rel="canonical" href="https://emerge-solutions.example/chat.html" />
   <title>Chat Experience | eMerge Solutions</title>
-  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <nav>
-    <div><strong>eMerge Solutions</strong></div>
-    <ul>
-      <li><a href="/index.html">Home</a></li>
-      <li><a href="/stabilization.html">Stabilization</a></li>
-      <li><a href="/optimization.html">Optimization</a></li>
-      <li><a href="/rescue.html">Rescue</a></li>
-      <li><a href="/technical-debt.html">Technical Debt</a></li>
-      <li><a href="/contact.html">Contact</a></li>
-    </ul>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="/">eMerge<span class="dot">.</span></a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">☰</button>
+      <ul id="primary-nav">
+        <li><a href="/normal.html">Home</a></li>
+        <li><a href="/stabilization.html">Stabilization</a></li>
+        <li><a href="/optimization.html">Optimization</a></li>
+        <li><a href="/rescue.html">Rescue</a></li>
+        <li><a href="/technical-debt.html">Technical Debt</a></li>
+        <li><a href="/contact.html" class="cta">Talk to us</a></li>
+      </ul>
+    </div>
   </nav>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <span class="eyebrow">Chat experience</span>
+      <h1>Browse normally, ask anything.</h1>
+      <p class="lede">A NetSuite-savvy assistant lives in the bottom-right of every page from here on. Ask about SuiteScript, ODBC, performance, or just "where do I start?".</p>
+      <div class="cta-row">
+        <a href="/normal.html" class="btn btn-light">Start browsing →</a>
+        <a href="/full-ai.html" class="btn btn-ghost">Try Full AI instead</a>
+      </div>
+    </div>
+  </header>
+
   <main>
-    <h2>Chat Experience</h2>
-    <p>
-      Browse our content while using the persistent chat assistant located at the bottom right of your screen. Feel free to ask about SuiteScript, ODBC integrations, performance tuning and more.
-    </p>
+    <section class="section">
+      <h2>What the assistant can do</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Answer NetSuite questions</h3>
+          <p>SuiteScript 2.1, SuiteFlow, saved searches, ODBC / SuiteAnalytics Connect — explain or compare on the fly.</p>
+        </div>
+        <div class="card">
+          <h3>Navigate the site</h3>
+          <p>"Take me to rescue" or "open the contact form" — the assistant moves you there.</p>
+        </div>
+        <div class="card">
+          <h3>Fill out the form</h3>
+          <p>Say "my name is Jane, email jane@acme.com, message my saved searches are timing out" and it'll pre-fill contact for you.</p>
+        </div>
+        <div class="card">
+          <h3>Voice in &amp; out</h3>
+          <p>Tap the 🎤 to talk; tap 🔊 to have replies read aloud. Browser-native — no install.</p>
+        </div>
+      </div>
+    </section>
   </main>
-  <footer>
-    <p>&copy; 2026 eMerge Solutions. All rights reserved.</p>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>&copy; 2026 eMerge Solutions</div>
+      <div><a href="/contact.html">Contact</a></div>
+    </div>
   </footer>
-  <button class="chat-toggle" id="chat-toggle">💬</button>
-  <div class="chat-container" id="chat-box">
-    <div class="chat-header">
-      <span>Ask eMerge</span>
-      <button id="close-chat" style="background:none;border:none;color:#fff;font-weight:bold;cursor:pointer;">×</button>
-    </div>
-    <div class="chat-messages" id="chat-messages"></div>
-    <div class="chat-input">
-      <input type="text" id="chat-input" placeholder="Ask a question…" />
-      <button id="chat-send">Send</button>
-    </div>
-  </div>
-  <script src="script.js"></script>
+
+  <script src="/assets/ai-engine.js"></script>
   <script>
-    // Toggle chat visibility
-    const chatToggle = document.getElementById('chat-toggle');
-    const chatBox = document.getElementById('chat-box');
-    const closeChat = document.getElementById('close-chat');
-    chatToggle.addEventListener('click', () => {
-      chatBox.style.display = chatBox.style.display === 'flex' ? 'none' : 'flex';
+    const tg = document.querySelector('.nav-toggle');
+    const ul = document.getElementById('primary-nav');
+    tg?.addEventListener('click', () => { const open = ul.classList.toggle('open'); tg.setAttribute('aria-expanded', String(open)); });
+
+    // Enable persistent chat mode and mount the launcher
+    window.eMergeAI.enableChatMode();
+    window.eMergeAI.createWidget({
+      mode: 'launcher',
+      title: 'Ask eMerge',
+      modePill: 'NetSuite AI'
     });
-    closeChat.addEventListener('click', () => {
-      chatBox.style.display = 'none';
-    });
-    // Basic chat functionality
-    const chatMessages = document.getElementById('chat-messages');
-    const chatInput = document.getElementById('chat-input');
-    const chatSend = document.getElementById('chat-send');
-    chatSend.addEventListener('click', () => {
-      const value = chatInput.value.trim();
-      if (!value) return;
-      appendChat(value, 'user');
-      chatInput.value = '';
-      // Simulated bot reply - in real deployment call API
-      setTimeout(() => {
-        // Use simple pattern matching for demonstration
-        let reply = 'I’m sorry, I didn’t quite catch that. Can you rephrase?';
-        if (/suite(script|script2\.1)/i.test(value)) reply = 'SuiteScript 2.1 is the latest JavaScript API for NetSuite; it enables asynchronous promises and modular design.';
-        else if (/odbc/i.test(value)) reply = 'ODBC allows external reporting tools to query your NetSuite data. We can help configure and secure your ODBC connection.';
-        else if (/stabilize|stabilization/i.test(value)) reply = 'Our stabilization services diagnose system issues and restore a healthy baseline.';
-        appendChat(reply, 'bot');
-      }, 500);
-    });
-    function appendChat(text, sender) {
-      const msg = document.createElement('div');
-      msg.textContent = text;
-      msg.style.margin = '0.5rem 0';
-      msg.style.padding = '0.5rem';
-      msg.style.borderRadius = '6px';
-      msg.style.maxWidth = '80%';
-      if (sender === 'bot') {
-        msg.style.background = '#f0f4ff';
-        msg.style.alignSelf = 'flex-start';
-      } else {
-        msg.style.background = '#e6fffa';
-        msg.style.alignSelf = 'flex-end';
-      }
-      chatMessages.appendChild(msg);
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
   </script>
 </body>
 </html>

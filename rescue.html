@@ -3,55 +3,81 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Emergency ERP project recovery services. We parachute in to fix failed implementations and meet deadlines." />
-  <title>ERP Rescue Services | eMerge Solutions</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="NetSuite rescue — emergency intervention for failing implementations. We cut scope, restart momentum, and ship a working system fast." />
+  <link rel="stylesheet" href="/assets/style.css" />
+  <link rel="canonical" href="https://emerge-solutions.example/rescue.html" />
+  <title>NetSuite Rescue | eMerge Solutions</title>
   <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "serviceType": "ERP Rescue",
-      "provider": {
-        "@type": "Organization",
-        "name": "eMerge Solutions"
-      },
-      "areaServed": "Worldwide",
-      "description": "Rapid intervention to rescue failing ERP implementations and get projects back on track."
-    }
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "NetSuite Rescue",
+    "provider": { "@type": "Organization", "name": "eMerge Solutions" },
+    "areaServed": "Worldwide",
+    "description": "Emergency intervention for failing NetSuite implementations and stalled go-lives."
+  }
   </script>
 </head>
 <body>
-  <nav>
-    <div><strong>eMerge Solutions</strong></div>
-    <ul>
-      <li><a href="/normal.html">Home</a></li>
-      <li><a href="/stabilization.html">Stabilization</a></li>
-      <li><a href="/optimization.html">Optimization</a></li>
-      <li><a href="/rescue.html">Rescue</a></li>
-      <li><a href="/technical-debt.html">Technical Debt</a></li>
-      <li><a href="/contact.html">Contact</a></li>
-    </ul>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="/">eMerge<span class="dot">.</span></a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">☰</button>
+      <ul id="primary-nav">
+        <li><a href="/normal.html">Home</a></li>
+        <li><a href="/stabilization.html">Stabilization</a></li>
+        <li><a href="/optimization.html">Optimization</a></li>
+        <li><a href="/rescue.html">Rescue</a></li>
+        <li><a href="/technical-debt.html">Technical Debt</a></li>
+        <li><a href="/contact.html" class="cta">Talk to us</a></li>
+      </ul>
+    </div>
   </nav>
-  <main>
-    <h1>ERP Rescue</h1>
-    <h2>What is an ERP rescue?</h2>
-    <p>
-      An ERP rescue is an emergency intervention for projects that are over budget, behind schedule or failing outright. We step in quickly, assess the situation and take decisive action to deliver a working system.
-    </p>
-    <h2>When do you need a rescue?</h2>
-    <p>
-      If your implementation has missed milestones, users are frustrated and executives are losing confidence, it’s time to call in a rescue team. Our experts have saved dozens of Acumatica and NetSuite deployments from collapse.
-    </p>
-    <h2>How does the rescue process work?</h2>
-    <p>
-      We start by stabilizing the core system. Next we prioritize the highest‑impact features and cut unnecessary scope. Finally we rebuild with clean configuration and proper change management to ensure success.
-    </p>
-    <p>Need urgent help? <a href="/contact.html">Contact us now</a>. We respond fast.</p>
-    <p>Related: see our <a href="/optimization.html">optimization</a> and <a href="/technical-debt.html">technical debt</a> services.</p>
-  </main>
-  <footer>
-    <p>&copy; 2026 eMerge Solutions. All rights reserved.</p>
+
+  <article class="article">
+    <p class="kicker">Service · Rescue</p>
+    <h1>When the NetSuite implementation is on fire.</h1>
+    <p>Milestones missed. Users frustrated. Executives losing patience. A rescue is what happens before the project gets cancelled or the partner gets fired. We come in fast, tell the truth, and ship something that works.</p>
+
+    <h2>Signals you need a rescue</h2>
+    <ul>
+      <li>Go-live has slipped twice — and the new date isn't credible either</li>
+      <li>The current partner is "almost done" but can't show working transactions end-to-end</li>
+      <li>UAT is uncovering issues faster than they're being closed</li>
+      <li>Custom records and SuiteScript have multiplied beyond what anyone can explain</li>
+      <li>Finance is preparing to run another month on the legacy system "just in case"</li>
+    </ul>
+
+    <h2>How a rescue runs</h2>
+    <ul>
+      <li><strong>Day 1–5 — Honest assessment.</strong> We map what's built, what works, what's broken, and what's missing. Written, blunt, with options.</li>
+      <li><strong>Week 2 — Reset scope.</strong> We cut every feature that isn't go-live critical. Phase 2 is a real plan, not a graveyard.</li>
+      <li><strong>Weeks 3–N — Ship.</strong> Working transactions, daily standups, visible burn-down. A new go-live date you can defend to the board.</li>
+      <li><strong>Stabilize.</strong> Two weeks of hyper-care after go-live. Then we transition to a sustainment model — your team, our backup.</li>
+    </ul>
+
+    <div class="callout">
+      <strong>We don't replace your partner unless we have to.</strong> Often the right move is to stay with the implementer and add eMerge as an independent technical lead. We'll tell you which path is honest.
+    </div>
+
+    <h2>Need help today?</h2>
+    <p>Rescue starts with a 60-minute call. <a href="/contact.html">Tell us the situation</a>. If we're not the right fit, we'll say so on that call.</p>
+
+    <p>Related: <a href="/stabilization.html">stabilization</a> · <a href="/optimization.html">optimization</a> · <a href="/technical-debt.html">technical debt</a></p>
+  </article>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>&copy; 2026 eMerge Solutions</div>
+      <div><a href="/contact.html">Contact</a></div>
+    </div>
   </footer>
-  <script src="script.js"></script>
+
+  <script src="/assets/ai-engine.js"></script>
+  <script>
+    const tg = document.querySelector('.nav-toggle');
+    const ul = document.getElementById('primary-nav');
+    tg?.addEventListener('click', () => { const open = ul.classList.toggle('open'); tg.setAttribute('aria-expanded', String(open)); });
+  </script>
 </body>
 </html>

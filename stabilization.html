@@ -3,56 +3,81 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Stabilize your Acumatica or NetSuite ERP with expert diagnostics, error resolution and performance tuning." />
-  <title>ERP Stabilization Services | eMerge Solutions</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="NetSuite stabilization — diagnose and fix slow saved searches, broken SuiteScript, failing integrations, and saved-search timeouts. Restore NetSuite to a healthy baseline." />
+  <link rel="stylesheet" href="/assets/style.css" />
+  <link rel="canonical" href="https://emerge-solutions.example/stabilization.html" />
+  <title>NetSuite Stabilization | eMerge Solutions</title>
   <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "serviceType": "ERP Stabilization",
-      "provider": {
-        "@type": "Organization",
-        "name": "eMerge Solutions"
-      },
-      "areaServed": "Worldwide",
-      "description": "Diagnostics and repairs for unstable Acumatica and NetSuite deployments."
-    }
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "NetSuite Stabilization",
+    "provider": { "@type": "Organization", "name": "eMerge Solutions" },
+    "areaServed": "Worldwide",
+    "description": "Diagnostics and repair for unstable NetSuite deployments — performance, SuiteScript, integrations and saved-search reliability."
+  }
   </script>
 </head>
 <body>
-  <nav>
-    <div><strong>eMerge Solutions</strong></div>
-    <ul>
-      <li><a href="/normal.html">Home</a></li>
-      <li><a href="/stabilization.html">Stabilization</a></li>
-      <li><a href="/optimization.html">Optimization</a></li>
-      <li><a href="/rescue.html">Rescue</a></li>
-      <li><a href="/technical-debt.html">Technical Debt</a></li>
-      <li><a href="/contact.html">Contact</a></li>
-    </ul>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="/">eMerge<span class="dot">.</span></a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">☰</button>
+      <ul id="primary-nav">
+        <li><a href="/normal.html">Home</a></li>
+        <li><a href="/stabilization.html">Stabilization</a></li>
+        <li><a href="/optimization.html">Optimization</a></li>
+        <li><a href="/rescue.html">Rescue</a></li>
+        <li><a href="/technical-debt.html">Technical Debt</a></li>
+        <li><a href="/contact.html" class="cta">Talk to us</a></li>
+      </ul>
+    </div>
   </nav>
-  <main>
-    <h1>ERP Stabilization</h1>
-    <h2>What is ERP stabilization?</h2>
-    <p>
-      ERP stabilization is the process of diagnosing and correcting errors, broken workflows and performance bottlenecks that cause Acumatica or NetSuite to fail. We restore your system to a reliable baseline so you can run operations smoothly.
-    </p>
-    <h2>How do we stabilize your system?</h2>
-    <p>
-      First we perform a full health check of your ERP instance. Then we triage critical issues, fix integration failures and tune performance. Throughout the process, we communicate clearly so you understand root causes and solutions.
-    </p>
-    <h2>Why choose an independent ally?</h2>
-    <p>
-      Because we don’t sell licenses, our only goal is to get your system healthy. We never upsell features you don’t need. Our expert, unbiased consultants provide the calm you need to navigate technical chaos.
-    </p>
-    <p>Ready to stabilize? <a href="/contact.html">Contact us</a> to schedule a performance check.</p>
-    <!-- Internal linking to other pillars -->
-    <p>Related: learn about <a href="/optimization.html">optimization</a> and <a href="/technical-debt.html">technical debt remediation</a>.</p>
-  </main>
-  <footer>
-    <p>&copy; 2026 eMerge Solutions. All rights reserved.</p>
+
+  <article class="article">
+    <p class="kicker">Service · Stabilization</p>
+    <h1>Stop the bleeding in NetSuite.</h1>
+    <p>If your team has lost trust in NetSuite — saved searches timing out, scripts erroring, integrations dropping — stabilization is where we start. We diagnose, triage, and fix until the platform is reliable again.</p>
+
+    <h2>What we fix</h2>
+    <ul>
+      <li>Slow saved searches and Workbooks (often a join or filter problem, not "NetSuite is slow")</li>
+      <li>SuiteScript 2.1 errors, governance limits, and runaway scheduled scripts</li>
+      <li>SuiteFlow workflows that fire twice or not at all</li>
+      <li>Failing CSV imports, web service integrations, and ODBC / SuiteAnalytics Connect connections</li>
+      <li>Permission and role explosions that block users from doing their job</li>
+    </ul>
+
+    <h2>How a stabilization engagement runs</h2>
+    <ul>
+      <li><strong>Day 1–3 — Diagnostic.</strong> We instrument the account: script logs, search performance, integration error queues, recent customizations.</li>
+      <li><strong>Week 1 — Triage.</strong> Top issues ranked by user pain and revenue impact. We fix the bleeding edges first.</li>
+      <li><strong>Week 2–3 — Hardening.</strong> Refactor scripts, tune searches, add monitoring so the next regression is caught in hours, not weeks.</li>
+      <li><strong>Handoff.</strong> Your admins get the runbook, the dashboards, and the documentation.</li>
+    </ul>
+
+    <div class="callout">
+      <strong>Why an independent consultant?</strong> Because we don't sell licenses, our only goal is a healthy NetSuite. We won't recommend a SuiteApp you don't need or a re-implementation when a saved search rewrite would do.
+    </div>
+
+    <h2>Ready to stabilize?</h2>
+    <p>A NetSuite Health Check is a fixed-scope, fixed-fee first step. <a href="/contact.html">Tell us what's broken</a> and we'll come back with a plan within a business day.</p>
+
+    <p>Related: <a href="/optimization.html">optimization</a> · <a href="/rescue.html">rescue</a> · <a href="/technical-debt.html">technical debt</a></p>
+  </article>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>&copy; 2026 eMerge Solutions</div>
+      <div><a href="/contact.html">Contact</a></div>
+    </div>
   </footer>
-  <script src="script.js"></script>
+
+  <script src="/assets/ai-engine.js"></script>
+  <script>
+    const tg = document.querySelector('.nav-toggle');
+    const ul = document.getElementById('primary-nav');
+    tg?.addEventListener('click', () => { const open = ul.classList.toggle('open'); tg.setAttribute('aria-expanded', String(open)); });
+  </script>
 </body>
 </html>

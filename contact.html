@@ -3,67 +3,112 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Contact eMerge Solutions to discuss your Acumatica or NetSuite needs." />
-  <title>Contact Us | eMerge Solutions</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Contact eMerge Solutions to discuss your NetSuite challenges. We respond within one business day." />
+  <link rel="stylesheet" href="/assets/style.css" />
+  <link rel="canonical" href="https://emerge-solutions.example/contact.html" />
+  <title>Contact | eMerge Solutions</title>
   <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ContactPage",
-      "name": "Contact eMerge Solutions",
-      "url": "https://example.com/contact.html",
-      "potentialAction": {
-        "@type": "CommunicateAction",
-        "target": "mailto:info@example.com",
-        "result": "Request a consultation"
-      }
-    }
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact eMerge Solutions",
+    "description": "Reach independent NetSuite consultants at eMerge Solutions."
+  }
   </script>
 </head>
 <body>
-  <nav>
-    <div><strong>eMerge Solutions</strong></div>
-    <ul>
-      <li><a href="/normal.html">Home</a></li>
-      <li><a href="/stabilization.html">Stabilization</a></li>
-      <li><a href="/optimization.html">Optimization</a></li>
-      <li><a href="/rescue.html">Rescue</a></li>
-      <li><a href="/technical-debt.html">Technical Debt</a></li>
-      <li><a href="/contact.html">Contact</a></li>
-    </ul>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="/">eMerge<span class="dot">.</span></a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">☰</button>
+      <ul id="primary-nav">
+        <li><a href="/normal.html">Home</a></li>
+        <li><a href="/stabilization.html">Stabilization</a></li>
+        <li><a href="/optimization.html">Optimization</a></li>
+        <li><a href="/rescue.html">Rescue</a></li>
+        <li><a href="/technical-debt.html">Technical Debt</a></li>
+        <li><a href="/contact.html" class="cta">Talk to us</a></li>
+      </ul>
+    </div>
   </nav>
-  <main>
-    <h1>Contact Us</h1>
-    <p>Please fill out the form below and a consultant will get back to you within one business day.</p>
-    <form id="contact-form">
+
+  <article class="article">
+    <p class="kicker">Contact</p>
+    <h1>Tell us what's going on with NetSuite.</h1>
+    <p>We respond within one business day. If it's truly urgent — go-live this week, finance can't close — say so and we'll page someone same-day.</p>
+
+    <form class="stacked" id="contact-form" novalidate>
       <label for="name">Name</label>
-      <input type="text" id="name" name="name" required />
+      <input type="text" id="name" name="name" required autocomplete="name" />
       <label for="email">Email</label>
-      <input type="email" id="email" name="email" required />
+      <input type="email" id="email" name="email" required autocomplete="email" />
+      <label for="company">Company (optional)</label>
+      <input type="text" id="company" name="company" autocomplete="organization" />
       <label for="message">How can we help?</label>
-      <textarea id="message" name="message" rows="5" required></textarea>
-      <button type="submit">Submit</button>
+      <textarea id="message" name="message" rows="6" required placeholder="What's broken, slipping, or slow in NetSuite?"></textarea>
+      <button type="submit" class="btn btn-primary" id="contact-submit">Send</button>
+      <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
     </form>
-    <div id="form-status" style="margin-top:1rem;"></div>
-  </main>
-  <footer>
-    <p>&copy; 2026 eMerge Solutions. All rights reserved.</p>
+
+    <p style="margin-top: 1.5rem; color: var(--ink-soft); font-size: 0.9rem;">
+      Prefer to talk to an AI consultant first? Try the <a href="/full-ai.html">Full AI Experience</a> — it can summarize what we do and even fill out this form for you.
+    </p>
+  </article>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>&copy; 2026 eMerge Solutions</div>
+      <div><a href="/normal.html">Home</a></div>
+    </div>
   </footer>
-  <script src="script.js"></script>
+
+  <script src="/assets/ai-engine.js"></script>
   <script>
-    // Contact form submission with confirmation
+    const tg = document.querySelector('.nav-toggle');
+    const ul = document.getElementById('primary-nav');
+    tg?.addEventListener('click', () => { const open = ul.classList.toggle('open'); tg.setAttribute('aria-expanded', String(open)); });
+
     const form = document.getElementById('contact-form');
-    form.addEventListener('submit', function(event) {
-      event.preventDefault();
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const message = document.getElementById('message').value;
-      // Confirm before submitting to avoid misaddressed emails or spam
-      const confirmed = confirm(`Submit your request to eMerge?\nName: ${name}\nEmail: ${email}\nMessage: ${message}`);
-      if (!confirmed) return;
-      // In real deployment, use fetch() to send to backend; here we simulate success
-      document.getElementById('form-status').textContent = 'Thank you! Your request has been submitted. We will be in touch shortly.';
-      form.reset();
+    const status = document.getElementById('form-status');
+    const btn = document.getElementById('contact-submit');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      status.className = 'form-status';
+      status.textContent = '';
+
+      const data = {
+        name: form.name.value.trim(),
+        email: form.email.value.trim(),
+        company: form.company.value.trim(),
+        message: form.message.value.trim(),
+      };
+      if (!data.name || !data.email || !data.message) {
+        status.className = 'form-status err';
+        status.textContent = 'Please fill in name, email, and a message.';
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      try {
+        const r = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        const j = await r.json().catch(() => ({}));
+        if (!r.ok) throw new Error(j.error || `status ${r.status}`);
+        status.className = 'form-status ok';
+        status.textContent = j.message || "Thanks — we'll be in touch within one business day.";
+        form.reset();
+      } catch (err) {
+        status.className = 'form-status err';
+        status.textContent = "Something went wrong sending your message. Email us directly at hello@emerge-solutions.example.";
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Send';
+      }
     });
   </script>
 </body>

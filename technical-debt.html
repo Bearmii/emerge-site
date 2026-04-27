@@ -3,55 +3,81 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Reduce technical debt in your ERP with refactoring and modernization to simplify your future." />
-  <title>Technical Debt Remediation | eMerge Solutions</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="NetSuite technical debt remediation — refactor brittle bundles, retire SuiteScript 1.0, simplify the customizations slowing your business down." />
+  <link rel="stylesheet" href="/assets/style.css" />
+  <link rel="canonical" href="https://emerge-solutions.example/technical-debt.html" />
+  <title>NetSuite Technical Debt Remediation | eMerge Solutions</title>
   <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "serviceType": "Technical Debt Remediation",
-      "provider": {
-        "@type": "Organization",
-        "name": "eMerge Solutions"
-      },
-      "areaServed": "Worldwide",
-      "description": "Refactoring and modernization of custom code and workflows in Acumatica and NetSuite to reduce technical debt."
-    }
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "NetSuite Technical Debt Remediation",
+    "provider": { "@type": "Organization", "name": "eMerge Solutions" },
+    "areaServed": "Worldwide",
+    "description": "Refactor brittle SuiteScript and bundle customizations, retire SuiteScript 1.0, and modernize NetSuite to reduce technical debt."
+  }
   </script>
 </head>
 <body>
-  <nav>
-    <div><strong>eMerge Solutions</strong></div>
-    <ul>
-      <li><a href="/normal.html">Home</a></li>
-      <li><a href="/stabilization.html">Stabilization</a></li>
-      <li><a href="/optimization.html">Optimization</a></li>
-      <li><a href="/rescue.html">Rescue</a></li>
-      <li><a href="/technical-debt.html">Technical Debt</a></li>
-      <li><a href="/contact.html">Contact</a></li>
-    </ul>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="/">eMerge<span class="dot">.</span></a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">☰</button>
+      <ul id="primary-nav">
+        <li><a href="/normal.html">Home</a></li>
+        <li><a href="/stabilization.html">Stabilization</a></li>
+        <li><a href="/optimization.html">Optimization</a></li>
+        <li><a href="/rescue.html">Rescue</a></li>
+        <li><a href="/technical-debt.html">Technical Debt</a></li>
+        <li><a href="/contact.html" class="cta">Talk to us</a></li>
+      </ul>
+    </div>
   </nav>
-  <main>
-    <h1>Technical Debt</h1>
-    <h2>What is technical debt?</h2>
-    <p>
-      Technical debt refers to the cost of maintaining legacy customizations, outdated code and fragile integrations. Over time this debt slows down new development and increases risk. We help identify and reduce it.
-    </p>
-    <h2>How do we reduce technical debt?</h2>
-    <p>
-      We inventory your existing scripts and customizations, rate their complexity and business value, and design a modernization roadmap. Refactoring, adopting native features and consolidating workflows are key strategies we employ.
-    </p>
-    <h2>Why address it now?</h2>
-    <p>
-      Ignoring technical debt leads to escalating maintenance costs and operational headaches. By resolving it proactively, you gain agility, reduce support burden and prepare your ERP for future growth.
-    </p>
-    <p>Let’s tackle your technical debt. <a href="/contact.html">Contact us</a> to get started.</p>
-    <p>Explore related services: <a href="/stabilization.html">stabilization</a> and <a href="/optimization.html">optimization</a>.</p>
-  </main>
-  <footer>
-    <p>&copy; 2026 eMerge Solutions. All rights reserved.</p>
+
+  <article class="article">
+    <p class="kicker">Service · Technical Debt</p>
+    <h1>Cut the cruft in your NetSuite account.</h1>
+    <p>Years of customizations don't go away on their own. SuiteScript 1.0 still running. Bundles installed by partners who left. Workflows nobody dares touch. We inventory it, rate it, and retire what shouldn't be there.</p>
+
+    <h2>What technical debt looks like in NetSuite</h2>
+    <ul>
+      <li>SuiteScript 1.0 user event scripts still running on critical records</li>
+      <li>Custom records duplicating native functionality (because someone didn't know better in 2017)</li>
+      <li>Bundles from former partners — undocumented, unpatched, unowned</li>
+      <li>Saved searches with hardcoded internal IDs that break every sandbox refresh</li>
+      <li>SuiteFlows that "you can't change because something might break"</li>
+    </ul>
+
+    <h2>Our remediation method</h2>
+    <ul>
+      <li><strong>Inventory.</strong> Every script, workflow, custom record, bundle, and integration — cataloged with owner, last-touched date, and business value.</li>
+      <li><strong>Score.</strong> Each item gets a complexity score and a value score. The matrix tells us what to retire, refactor, or leave alone.</li>
+      <li><strong>Roadmap.</strong> Quarter-by-quarter plan. Quick wins this month, structural changes over six months.</li>
+      <li><strong>Refactor &amp; retire.</strong> Replace SuiteScript 1.0 with 2.1, consolidate workflows, document what stays.</li>
+    </ul>
+
+    <div class="callout">
+      <strong>Why now?</strong> Every quarter you wait, the cost of the next NetSuite upgrade, sandbox refresh, or audit grows. Technical debt compounds — like all debt.
+    </div>
+
+    <h2>Start with a Debt Inventory</h2>
+    <p>Two weeks, fixed fee. You walk away with a written inventory and a prioritized roadmap — even if you never hire us for the remediation work itself. <a href="/contact.html">Request the inventory →</a></p>
+
+    <p>Related: <a href="/stabilization.html">stabilization</a> · <a href="/optimization.html">optimization</a> · <a href="/rescue.html">rescue</a></p>
+  </article>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>&copy; 2026 eMerge Solutions</div>
+      <div><a href="/contact.html">Contact</a></div>
+    </div>
   </footer>
-  <script src="script.js"></script>
+
+  <script src="/assets/ai-engine.js"></script>
+  <script>
+    const tg = document.querySelector('.nav-toggle');
+    const ul = document.getElementById('primary-nav');
+    tg?.addEventListener('click', () => { const open = ul.classList.toggle('open'); tg.setAttribute('aria-expanded', String(open)); });
+  </script>
 </body>
 </html>
